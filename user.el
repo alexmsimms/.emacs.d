@@ -55,4 +55,13 @@
 (setq mac-option-modifier nil)
 
 
-;; Movement loveliness
+;; Javascript Lambda-looking thing
+
+(defun js-lambdas ()
+  (font-lock-add-keywords
+   nil `(("(?\\(function\\>\\)"
+          (0 (progn (compose-region (match-beginning 1) (match-end 1)
+                                    ,(make-char 'greek-iso8859-7 107))
+                    nil))))))
+
+(add-hook 'js2-mode-hook 'js-lambads)
