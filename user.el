@@ -54,5 +54,5 @@
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier nil)
 
-
 (load  "~/.emacs.d/rcirc-config.el")
+

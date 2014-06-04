@@ -75,6 +75,13 @@
           (0 (progn (compose-region (match-beginning 1) (match-end 1)
                                     ,(make-char 'greek-iso8859-7 107))
                     nil))))))
+(defun esk-lambda-functions ()
+  (font-lock-add-keywords
+   nil `(("(?\\(function\\>\\)"
+          (0 (progn (compose-region (match-beginning 1) (match-end 1)
+                                    ,(make-char 'greek-iso8859-7 107))
+                    nil))))))
+
 
 (defun esk-add-watchwords ()
   (font-lock-add-keywords
@@ -86,6 +93,7 @@
 (add-hook 'prog-mode-hook 'esk-turn-on-hl-line-mode)
 (add-hook 'prog-mode-hook 'esk-turn-on-save-place-mode)
 (add-hook 'prog-mode-hook 'esk-pretty-lambdas)
+(add-hook 'prog-mode-hook 'esk-lambda-functions)
 (add-hook 'prog-mode-hook 'esk-add-watchwords)
 (add-hook 'prog-mode-hook 'esk-turn-on-idle-highlight-mode)
 
