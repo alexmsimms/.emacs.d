@@ -55,4 +55,4 @@
 (setq mac-option-modifier nil)
 
 
-;; Movement loveliness
+(load  "~/.emacs.d/rcirc-config.el")
