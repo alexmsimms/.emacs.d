@@ -56,3 +56,16 @@
 
 (load  "~/.emacs.d/rcirc-config.el")
 
+;; Insert newline when you press `C-n' (next-line)
+;; at the end of the buffer
+(setq next-line-add-newlines t)
+
+;; Org-mode settings
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(global-font-lock-mode 1)
+
+;;Haskell Things
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+
