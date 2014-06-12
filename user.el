@@ -6,8 +6,10 @@
     (setenv "PATH" path-from-shell)
     (setq exec-path (split-string path-from-shell path-separator))))
 
+(set-default-font "Source Code Pro 12")
 (setq initial-frame-alist '((top . 0) (left . 0) (width . 80) (height . 40)))
 (setq default-tab-width 4)
+(setq-default fill-column 80)
 
 ;; Place downloaded elisp files in this directory. You'll then be able
 ;; to load them.
@@ -66,6 +68,9 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-font-lock-mode 1)
 
-;;Haskell Things
+;; Haskell Things
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+
+;; TRAMP settings
+(setq tramp-default-method "ssh")
 
