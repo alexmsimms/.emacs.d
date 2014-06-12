@@ -41,7 +41,7 @@
 ;;;###autoload
 (progn
   ;; Turn off mouse interface early in startup to avoid momentary display
-  (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
+  (dolist (mode '(tool-bar-mode scroll-bar-mode))
     (when (fboundp mode) (funcall mode -1)))
 
   (mapc 'require '(uniquify starter-kit-defuns starter-kit-misc))
