@@ -10,7 +10,7 @@
 (setq initial-frame-alist '((top . 0) (left . 0) (width . 80) (height . 40)))
 (setq default-tab-width 4)
 (setq-default fill-column 80)
-
+(menu-bar-mode 1)
 ;; Place downloaded elisp files in this directory. You'll then be able
 ;; to load them.
 ;;
