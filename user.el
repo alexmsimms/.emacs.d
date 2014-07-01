@@ -6,7 +6,7 @@
     (setenv "PATH" path-from-shell)
     (setq exec-path (split-string path-from-shell path-separator))))
 
-(set-default-font "Source Code Pro 12")
+(set-default-font "Source Code Pro 13")
 (setq initial-frame-alist '((top . 0) (left . 0) (width . 80) (height . 40)))
 (setq default-tab-width 4)
 (setq-default fill-column 80)
@@ -74,3 +74,4 @@
 ;; TRAMP settings
 (setq tramp-default-method "ssh")
 
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
