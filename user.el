@@ -6,7 +6,7 @@
     (setenv "PATH" path-from-shell)
     (setq exec-path (split-string path-from-shell path-separator))))
 
-(set-default-font "Source Code Pro 13")
+(set-default-font "Source Code Pro 12")
 (setq initial-frame-alist '((top . 0) (left . 0) (width . 80) (height . 40)))
 (setq default-tab-width 4)
 (setq-default fill-column 80)
@@ -41,8 +41,10 @@
 (load "~/.emacs.d/vendor/clojure")
 
 ;; hippie expand - don't try to complete with file names
-(setq hippie-expand-try-functions-list (delete 'try-complete-file-name hippie-expand-try-functions-list))
-(setq hippie-expand-try-functions-list (delete 'try-complete-file-name-partially hippie-expand-try-functions-list))
+(setq hippie-expand-try-functions-list
+      (delete 'try-complete-file-name hippie-expand-try-functions-list))
+(setq hippie-expand-try-functions-list
+      (delete 'try-complete-file-name-partially hippie-expand-try-functions-list))
 
 (setq ido-use-filename-at-point nil)
 
@@ -74,4 +76,10 @@
 ;; TRAMP settings
 (setq tramp-default-method "ssh")
 
+;; My own javascript additions
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(font-lock-add-keywords
+ 'js2-mode `(("\\(function *\\)("
+              (0 (progn (compose-region (match-beginning 1)
+                                        (match-end 1) "\u0192")
+                        nil)))))
