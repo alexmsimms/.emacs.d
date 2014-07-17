@@ -83,3 +83,6 @@
               (0 (progn (compose-region (match-beginning 1)
                                         (match-end 1) "\u0192")
                         nil)))))
+
+(setq-default column-number-mode t)
+(setq-default show-trailing-whitespace t)
