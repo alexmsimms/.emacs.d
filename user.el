@@ -79,6 +79,7 @@
 
 ;; My own javascript additions
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-hook 'js2-mode-hook 'electric-pair-mode)
 (font-lock-add-keywords
  'js2-mode `(("\\(function *\\)("
               (0 (progn (compose-region (match-beginning 1)
