@@ -75,6 +75,7 @@
 
 ;; TRAMP settings
 (setq tramp-default-method "ssh")
+(setq tramp-default-user "asimms1")
 
 ;; My own javascript additions
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
