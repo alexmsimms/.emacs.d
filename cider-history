@@ -1,5 +1,0 @@
-;; -*- coding: utf-8-unix -*-
-;; Automatically written history of CIDER REPL session
-;; Edit at your own risk
-
-("(potato)" "(problem-2)" "(problem-1-loop)" "(problem-1 0 0)" "(doc cycle)" "(cycle 100)" "(inc 0)" "(inc (rand 4))" "(rand 5)" "(hit asym-hobbit-body-parts)" "(symmetrize-body-parts-with-reduce asym-hobbit-body-parts)" "(symmetrize-body-parts asym-hobbit-body-parts)" "(symmetrize-body-parts hobbit-body-parts)" "(symmetrize-body-parts-with-reduce asym-hobbit-body-parts)" "(symmetrize-body-parts-with-reduce)")
