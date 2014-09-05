@@ -40,6 +40,8 @@
 (load-theme 'monokai t)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
+(setq indicate-empty-lines t)
+(show-paren-mode 1)
 
 (sml/setup)
 (sml/apply-theme 'automatic)
