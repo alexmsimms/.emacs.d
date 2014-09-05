@@ -109,5 +109,4 @@
 ;; Helm Set ;;
 
 ;; Nyan Mode ;;
-(setq nyan-wavy-trail t)
 (nyan-mode)
