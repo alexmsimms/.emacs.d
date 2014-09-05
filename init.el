@@ -11,6 +11,28 @@
   (package-refresh-contents))
 ;; Package Manager Initialized ;;
 
+;; Guarantee all packages are installed on start
+(require 'cl)
+(defvar packages-list
+  '(helm
+    magit
+    nyan-mode)
+  "List of packages needs to be installed at launch")
+
+(defun has-package-not-installed ()
+  (loop for p in packages-list
+        when (not (package-installed-p p)) do (return t)
+        finally (return nil)))
+(when (has-package-not-installed)
+  ;; Check for new packages (package versions)
+  (message "%s" "Get latest versions of all packages...")
+  (package-refresh-contents)
+  (message "%s" " done.")
+  ;; Install the missing packages
+  (dolist (p packages-list)
+    (when (not (package-installed-p p))
+      (package-install p))))
+
 ;; UI Enhancements ;;
 (set-default-font "Source Code Pro 12")
 (tool-bar-mode 0)
