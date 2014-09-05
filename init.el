@@ -42,6 +42,9 @@
 (setq mac-command-key-is-meta t)
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier nil)
+
+(setq inhibit-startup-screen t)
+
 ;; UI Enhanced ;;
 
 ;; TRAMP Settings ;;
