@@ -16,6 +16,7 @@
 (defvar packages-list
   '(helm
     magit
+    auctex
     nyan-mode
     smart-mode-line
     monokai-theme)
