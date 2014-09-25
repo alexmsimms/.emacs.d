@@ -17,10 +17,12 @@
   '(helm
     magit
     auctex
+    paredit
     nyan-mode
     smart-mode-line
     monokai-theme)
   "List of packages needs to be installed at launch")
+
 
 (defun has-package-not-installed ()
   (loop for p in packages-list
@@ -36,6 +38,10 @@
     (when (not (package-installed-p p))
       (package-install p))))
 
+;; Set Emacs Path from shell
+(when (memq window-system '(mac ns))
+  (add-to-list 'packages-list "exec-path-from-shell")
+  (exec-path-from-shell-initialize))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -44,7 +50,11 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default))))
+	("6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
+ '(electric-pair-delete-adjacent-pairs t)
+ '(electric-pair-mode t)
+ '(sml/position-percentage-format "")
+ '(tab-width 4))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -56,7 +66,8 @@
 
 
 ;; UI Enhancements ;;
-;;(set-default-font "Source Code Pro 12")
+(when (member "Source Code Pro" (font-family-list))
+  (set-default-font "Source Code Pro 12"))
 (load-theme 'monokai t)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
@@ -144,3 +155,26 @@
 
 (setq-default ispell-program-name "/usr/local/bin/aspell")
 (setq-default ispell-list-command "list")
+
+
+;; make backup to a designated dir, mirroring the full path
+
+(defun my-backup-file-name (fpath)
+  "Return a new file path of a given file path.
+If the new path's directories does not exist, create them."
+  (let* ((backupRootDir "~/.emacs.d/backup/")
+	 (filePath (replace-regexp-in-string "[A-Za-z]:" "" fpath ))
+	 (backupFilePath (replace-regexp-in-string "//" "/" (concat backupRootDir filePath "~"))))
+    (make-directory (file-name-directory backupFilePath) (file-name-directory backupFilePath))
+    backupFilePath))
+
+(setq make-backup-file-name-function 'my-backup-file-name)
+
+
+(setq save-place-file "~/.emacs.d/saved-places")
+(require 'saveplace)
+(setq-default save-place t)
+
+
+
+(add-hook 'doc-view-mode-hook 'auto-revert-mode)
