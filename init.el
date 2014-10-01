@@ -48,13 +48,28 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(blink-cursor-mode nil)
  '(custom-safe-themes
    (quote
 	("6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
  '(electric-pair-delete-adjacent-pairs t)
  '(electric-pair-mode t)
  '(sml/position-percentage-format "")
- '(tab-width 4))
+ '(sml/replacer-regexp-list
+   (quote
+	(("^~/org/" ":Org:")
+	 ("^~/\\.emacs\\.d/" ":ED:")
+	 ("^/sudo:.*:" ":SU:")
+	 ("^~/Documents/" ":Doc:")
+	 ("^~/Dropbox/" ":DB:")
+	 ("^:\\([^:]*\\):Documento?s/" ":\\1/Doc:")
+	 ("^~/[Gg]it/" ":Git:")
+	 ("^~/[Gg]it[Hh]ub/" ":Git:")
+	 ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:")
+	 (":Doc:Cloud/" ":Cloud:"))))
+ '(tab-width 4)
+ '(viper-ESC-moves-cursor-back t)
+ '(visible-bell t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -158,7 +173,6 @@
 
 
 ;; make backup to a designated dir, mirroring the full path
-
 (defun my-backup-file-name (fpath)
   "Return a new file path of a given file path.
 If the new path's directories does not exist, create them."
@@ -178,3 +192,4 @@ If the new path's directories does not exist, create them."
 
 
 (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+(set-cursor-color "#FD971F")
