@@ -119,8 +119,11 @@
 If the new path's directories does not exist, create them."
   (let* ((backupRootDir "~/.emacs.d/backup/")
 	 (filePath (replace-regexp-in-string "[A-Za-z]:" "" fpath ))
-	 (backupFilePath (replace-regexp-in-string "//" "/" (concat backupRootDir filePath "~"))))
-    (make-directory (file-name-directory backupFilePath) (file-name-directory backupFilePath))
+	 (backupFilePath (replace-regexp-in-string "//" "/" (concat
+														 backupRootDir filePath "~"))))
+    (make-directory (file-name-directory
+					 backupFilePath) (file-name-directory backupFilePath))
+	
     backupFilePath))
 
 (setq make-backup-file-name-function 'my-backup-file-name)
@@ -130,7 +133,6 @@ If the new path's directories does not exist, create them."
 (require 'saveplace)
 (setq-default save-place t)
 
-
-
 (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 (set-cursor-color "#FD971F")
+
