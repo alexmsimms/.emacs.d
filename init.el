@@ -40,7 +40,11 @@
 ;; Set Emacs Path from shell
 (when (memq window-system '(mac ns))
   (add-to-list 'packages-list "exec-path-from-shell")
-  (exec-path-from-shell-initialize))
+  (exec-path-from-shell-initialize)
+  (setq mac-option-key-is-meta nil
+		mac-command-key-is-meta t
+		mac-command-modifier 'meta
+		mac-option-modifier 'super))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -89,10 +93,7 @@
 (sml/setup)
 (sml/apply-theme 'automatic)
 
-(setq mac-option-key-is-meta nil
-      mac-command-key-is-meta t
-      mac-command-modifier 'meta
-      mac-option-modifier nil)
+
 
 (setq inhibit-startup-screen t)
 
