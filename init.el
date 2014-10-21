@@ -5,7 +5,7 @@
 (add-to-list 'package-archives
              '("tromey" . "http://tromey.com/elpa/") t)
 (add-to-list 'package-archives
-	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
+			 '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 (when (not package-archive-contents)
   (package-refresh-contents))
@@ -20,6 +20,7 @@
     paredit
     nyan-mode
     smart-mode-line
+	god-mode
     monokai-theme)
   "List of packages needs to be installed at launch")
 
@@ -39,8 +40,8 @@
 
 ;; Set Emacs Path from shell
 (when (memq window-system '(mac ns))
-  (add-to-list 'packages-list "exec-path-from-shell")
   (exec-path-from-shell-initialize)
+  (load "~/.emacs.d/settings/erlang.el")
   (setq mac-option-key-is-meta nil
 		mac-command-key-is-meta t
 		mac-command-modifier 'meta
@@ -106,6 +107,8 @@
 
 (load "~/.emacs.d/settings/helm.elc")
 
+
+
 ;; Nyan Mode ;;
 (setq nyan-bar-length 16)
 (nyan-mode)
@@ -136,4 +139,17 @@ If the new path's directories does not exist, create them."
 
 (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 (set-cursor-color "#FD971F")
+
+;; God mode things
+(global-set-key (kbd "C-x C-1") 'delete-other-windows)
+(global-set-key (kbd "C-x C-2") 'split-window-below)
+(global-set-key (kbd "C-x C-3") 'split-window-right)
+(global-set-key (kbd "C-x C-0") 'delete-window)
+(global-set-key (kbd "C-x C-o") 'other-window)
+(defun prev-window ()
+   (interactive)
+   (other-window -1))
+(global-set-key (kbd "C-x C-n") 'prev-window)
+(global-set-key (kbd "C-x n") 'prev-window)
+(global-set-key (kbd "C-'") 'god-mode-all)
 
