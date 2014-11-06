@@ -21,7 +21,8 @@
     nyan-mode
     smart-mode-line
 	god-mode
-    monokai-theme)
+    monokai-theme
+	slime)
   "List of packages needs to be installed at launch")
 
 (defun has-package-not-installed ()
