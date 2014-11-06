@@ -71,7 +71,9 @@
 	 ("^~/[Gg]it/" ":Git:")
 	 ("^~/[Gg]it[Hh]ub/" ":Git:")
 	 ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:")
-	 (":Doc:Cloud/" ":Cloud:"))))
+	 (":Doc:Cloud/" ":Cloud:")
+	 (":Doc:phonphon/" ":ΦΦ:")
+	 ("homework" "hw"))))
  '(tab-width 4)
  '(visible-bell t))
 (custom-set-faces
