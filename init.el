@@ -1,9 +1,9 @@
 ;; Initialize Package Manager ;;
 (require 'package)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
-(add-to-list 'package-archives
-             '("tromey" . "http://tromey.com/elpa/") t)
+;(add-to-list 'package-archives
+;             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+;(add-to-list 'package-archives
+;             '("tromey" . "http://tromey.com/elpa/") t)
 (add-to-list 'package-archives
 			 '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
@@ -54,11 +54,13 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
+ '(confirm-kill-emacs (quote y-or-n-p))
  '(custom-safe-themes
    (quote
 	("6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
  '(electric-pair-delete-adjacent-pairs t)
  '(electric-pair-mode t)
+ '(rm-blacklist (quote (" hl-p" " Helm")))
  '(sml/position-percentage-format "")
  '(sml/replacer-regexp-list
    (quote
@@ -96,7 +98,7 @@
 
 (sml/setup)
 (sml/apply-theme 'automatic)
-
+(rich-minority-mode)
 
 
 (setq inhibit-startup-screen t)
