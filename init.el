@@ -156,3 +156,11 @@ If the new path's directories does not exist, create them."
 (global-set-key (kbd "C-x n") 'prev-window)
 (global-set-key (kbd "C-'") 'god-mode-all)
 
+
+;; SLIME things
+(require 'slime)
+(add-hook 'lisp-mode-hook (lambda () (slime-mode t)))
+(add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
+(add-hook 'lisp-mode-hook (lambda () (paredit-mode t)))
+(add-hook 'inferior-lisp-mode-hook (lambda () (paredit-mode t)))
+(setq inferior-lisp-program "sbcl")
