@@ -42,7 +42,6 @@
 ;; Set Emacs Path from shell
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize)
-  (load "~/.emacs.d/settings/erlang.el")
   (setq mac-option-key-is-meta nil
 		mac-command-key-is-meta t
 		mac-command-modifier 'meta
@@ -75,7 +74,9 @@
 	 ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:")
 	 (":Doc:Cloud/" ":Cloud:")
 	 (":Doc:phonphon/" ":ΦΦ:")
-	 ("homework" "hw"))))
+	 ("homework" "hw")
+	 ("^/ssh:asimms1@.*cs.swarthmore.edu:/" ":CS:")
+	 (":CS:home/asimms1" ":CS:~"))))
  '(tab-width 4)
  '(visible-bell t))
 (custom-set-faces
@@ -111,6 +112,7 @@
 ;; TRAMP Set ;;
 
 (load "~/.emacs.d/settings/helm.elc")
+(load "~/.emacs.d/settings/pyret.el")
 
 
 
@@ -166,3 +168,7 @@ If the new path's directories does not exist, create them."
 (add-hook 'lisp-mode-hook (lambda () (paredit-mode t)))
 (add-hook 'inferior-lisp-mode-hook (lambda () (paredit-mode t)))
 (setq inferior-lisp-program "sbcl")
+
+
+(require 'windmove)
+(windmove-default-keybindings 'super)

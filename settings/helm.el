@@ -51,5 +51,6 @@
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-c h o") 'helm-occur)
 (global-set-key (kbd "C-c h g") 'helm-google-suggest)
+(global-set-key (kbd "C-c h w") 'helm-wikipedia-suggest)
 (helm-mode 1)
 ;; Helm Set ;;
