@@ -57,8 +57,11 @@
  '(custom-safe-themes
    (quote
 	("6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
+ '(dired-omit-files "^\\.?#\\|^\\.$\\|^\\.\\.$|^\\.")
+ '(dired-use-ls-dired nil)
  '(electric-pair-delete-adjacent-pairs t)
  '(electric-pair-mode t)
+ '(magit-use-overlays nil)
  '(rm-blacklist (quote (" hl-p" " Helm")))
  '(sml/position-percentage-format "")
  '(sml/replacer-regexp-list
