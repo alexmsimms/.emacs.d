@@ -95,7 +95,7 @@
 
 ;; UI Enhancements ;;
 (when (member "Source Code Pro" (font-family-list))
-  (set-default-font "Source Code Pro 12"))
+  (set-default-font "Source Code Pro 11"))
 (load-theme 'monokai t)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
@@ -127,7 +127,10 @@
 (setq nyan-bar-length 16)
 (nyan-mode)
 
-(setq-default ispell-program-name "/usr/local/bin/aspell")
+(if (memq window-system '(mac ns))
+	(setq-default ispell-program-name "/usr/local/bin/aspell")
+  (setq-default ispell-program-name "aspell"))
+
 (setq-default ispell-list-command "list")
 
 
