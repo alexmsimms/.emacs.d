@@ -1,4 +1,7 @@
 (eval-when-compile (require 'cl))
+
+(add-to-list 'auto-mode-alist '("\\.arr\\'" . pyret-mode))
+
 (defvar pyret-mode-hook nil)
 (defun pyret-smart-tab ()
   "This smart tab is minibuffer compliant: it acts as usual in
@@ -12,7 +15,8 @@
     (if mark-active
         (indent-region (region-beginning)
                        (region-end))
-        (indent-for-tab-command))))
+	  (indent-for-tab-command))))
+
 (defun pyret-indent-from-punctuation (&optional N)
   (interactive "^p")
   (or N (setq N 1))
@@ -1149,6 +1153,10 @@ in (nil if we're not in a string).")
           (text-mode)
           (pyret-mode)))))
    (buffer-list)))
+
+;;; My stuff -- I'm drunk and I want a REPL, god damn it!
+
+
 
 
 (provide 'pyret)
