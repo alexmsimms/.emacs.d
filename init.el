@@ -58,32 +58,17 @@
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
  '(confirm-kill-emacs (quote y-or-n-p))
- '(custom-safe-themes
-   (quote
-	("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
+ '(custom-safe-themes (quote ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
  '(dired-omit-files "^\\.?#\\|^\\.$\\|^\\.\\.$|^\\.")
  '(dired-use-ls-dired nil)
  '(electric-pair-delete-adjacent-pairs t)
  '(electric-pair-mode t)
+ '(glasses-separator "-")
+ '(initial-scratch-message nil)
  '(magit-use-overlays nil)
  '(rm-blacklist (quote (" hl-p" " Helm")))
  '(sml/position-percentage-format "")
- '(sml/replacer-regexp-list
-   (quote
-	(("^~/org/" ":Org:")
-	 ("^~/\\.emacs\\.d/" ":ED:")
-	 ("^/sudo:.*:" ":SU:")
-	 ("^~/Documents/" ":Doc:")
-	 ("^~/Dropbox/" ":DB:")
-	 ("^:\\([^:]*\\):Documento?s/" ":\\1/Doc:")
-	 ("^~/[Gg]it/" ":Git:")
-	 ("^~/[Gg]it[Hh]ub/" ":Git:")
-	 ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:")
-	 (":Doc:Cloud/" ":Cloud:")
-	 (":Doc:phonphon/" ":ΦΦ:")
-	 ("homework" "hw")
-	 ("^/ssh:asimms1@.*cs.swarthmore.edu:/" ":CS:")
-	 (":CS:home/asimms1" ":CS:~"))))
+ '(sml/replacer-regexp-list (quote (("^~/org/" ":Org:") ("^~/\\.emacs\\.d/" ":ED:") ("^/sudo:.*:" ":SU:") ("^~/Documents/" ":Doc:") ("^~/Dropbox/" ":DB:") ("^:\\([^:]*\\):Documento?s/" ":\\1/Doc:") ("^~/[Gg]it/" ":Git:") ("^~/[Gg]it[Hh]ub/" ":Git:") ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:") (":Doc:Cloud/" ":Cloud:") (":Doc:phonphon/" ":ΦΦ:") ("homework" "hw") ("^/ssh:asimms1@.*cs.swarthmore.edu:/" ":CS:") (":CS:home/asimms1" ":CS:~"))))
  '(tab-width 4)
  '(visible-bell t))
 (custom-set-faces
