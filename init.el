@@ -66,7 +66,12 @@
  '(dired-use-ls-dired nil)
  '(electric-pair-delete-adjacent-pairs t)
  '(electric-pair-mode t)
+ '(glasses-separate-parentheses-p nil)
+ '(glasses-separator "-")
+ '(glasses-uncapitalize-p t)
+ '(helm-split-window-default-side (quote other))
  '(magit-use-overlays nil)
+ '(org-highlight-latex-and-related (quote (latex script entities)))
  '(rm-blacklist (quote (" hl-p" " Helm")))
  '(sml/position-percentage-format "")
  '(sml/replacer-regexp-list
