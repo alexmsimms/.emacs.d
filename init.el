@@ -20,14 +20,15 @@
     paredit
     nyan-mode
     smart-mode-line
-	god-mode
     monokai-theme
-	slime
-	tuareg ;; \
-	utop   ;;  > OCAML
-	merlin ;; /
-	)
+    slime
+    tuareg ;; \
+    utop   ;;  > OCAML
+    merlin ;; /
+    )
   "List of packages needs to be installed at launch")
+
+
 
 (defun has-package-not-installed ()
   (loop for p in packages-list
@@ -157,18 +158,12 @@ If the new path's directories does not exist, create them."
 (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 (set-cursor-color "#FD971F")
 
-;; God mode things
-(global-set-key (kbd "C-x C-1") 'delete-other-windows)
-(global-set-key (kbd "C-x C-2") 'split-window-below)
-(global-set-key (kbd "C-x C-3") 'split-window-right)
-(global-set-key (kbd "C-x C-0") 'delete-window)
-(global-set-key (kbd "C-x C-o") 'other-window)
 (defun prev-window ()
    (interactive)
    (other-window -1))
 (global-set-key (kbd "C-x C-n") 'prev-window)
 (global-set-key (kbd "C-x n") 'prev-window)
-(global-set-key (kbd "C-'") 'god-mode-all)
+
 
 
 ;; SLIME things
