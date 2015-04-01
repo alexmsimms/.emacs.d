@@ -207,6 +207,9 @@ If the new path's directories does not exist, create them."
 (add-hook 'inferior-lisp-mode-hook (lambda () (paredit-mode t)))
 (setq inferior-lisp-program "sbcl")
 
+(add-hook 'lisp-mode-hook 'paredit-mode)
+(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
+(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
 
 (require 'windmove)
 (windmove-default-keybindings 'super)
