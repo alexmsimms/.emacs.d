@@ -1,11 +1,13 @@
 ;; Initialize Package Manager ;;
 (require 'package)
-;(add-to-list 'package-archives
-;             '("marmalade" . "http://marmalade-repo.org/packages/") t)
-;(add-to-list 'package-archives
-;             '("tromey" . "http://tromey.com/elpa/") t)
 (add-to-list 'package-archives
-			 '("melpa" . "http://melpa.milkbox.net/packages/") t)
+             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives
+             '("tromey" . "http://tromey.com/elpa/") t)
+(add-to-list 'package-archives
+			 '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
 (when (not package-archive-contents)
   (package-refresh-contents))
@@ -89,7 +91,10 @@
 	 (":Doc:phonphon/" ":ΦΦ:")
 	 ("homework" "hw")
 	 ("^/ssh:asimms1@.*cs.swarthmore.edu:/" ":CS:")
-	 (":CS:home/asimms1" ":CS:~"))))
+	 (":CS:home/asimms1" ":CS:~")
+	 (":Doc:algorithms/?" ":Algorithms:")
+	 ("~/Google Drive/?" ":GD:")
+	 (":GD:code.pyret.org/?" ":CPO:"))))
  '(tab-width 4)
  '(visible-bell t))
 (custom-set-faces
