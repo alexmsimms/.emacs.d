@@ -1,11 +1,13 @@
 ;; Initialize Package Manager ;;
 (require 'package)
-;(add-to-list 'package-archives
-;             '("marmalade" . "http://marmalade-repo.org/packages/") t)
-;(add-to-list 'package-archives
-;             '("tromey" . "http://tromey.com/elpa/") t)
 (add-to-list 'package-archives
-			 '("melpa" . "http://melpa.milkbox.net/packages/") t)
+             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives
+             '("tromey" . "http://tromey.com/elpa/") t)
+(add-to-list 'package-archives
+			 '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
 (when (not package-archive-contents)
   (package-refresh-contents))
@@ -20,14 +22,15 @@
     paredit
     nyan-mode
     smart-mode-line
-	god-mode
     monokai-theme
-	slime
-	tuareg ;; \
-	utop   ;;  > OCAML
-	merlin ;; /
-	)
+    slime
+    tuareg ;; \
+    utop   ;;  > OCAML
+    merlin ;; /
+    )
   "List of packages needs to be installed at launch")
+
+
 
 (defun has-package-not-installed ()
   (loop for p in packages-list
@@ -63,12 +66,35 @@
  '(dired-use-ls-dired nil)
  '(electric-pair-delete-adjacent-pairs t)
  '(electric-pair-mode t)
+ '(glasses-separate-parentheses-p nil)
+ '(glasses-separator "-")
+ '(glasses-uncapitalize-p t)
+ '(helm-split-window-default-side (quote other))
  '(glasses-separator "-")
  '(initial-scratch-message nil)
  '(magit-use-overlays nil)
+ '(org-highlight-latex-and-related (quote (latex script entities)))
  '(rm-blacklist (quote (" hl-p" " Helm")))
  '(sml/position-percentage-format "")
- '(sml/replacer-regexp-list (quote (("^~/org/" ":Org:") ("^~/\\.emacs\\.d/" ":ED:") ("^/sudo:.*:" ":SU:") ("^~/Documents/" ":Doc:") ("^~/Dropbox/" ":DB:") ("^:\\([^:]*\\):Documento?s/" ":\\1/Doc:") ("^~/[Gg]it/" ":Git:") ("^~/[Gg]it[Hh]ub/" ":Git:") ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:") (":Doc:Cloud/" ":Cloud:") (":Doc:phonphon/" ":ΦΦ:") ("homework" "hw") ("^/ssh:asimms1@.*cs.swarthmore.edu:/" ":CS:") (":CS:home/asimms1" ":CS:~"))))
+ '(sml/replacer-regexp-list
+   (quote
+	(("^~/org/" ":Org:")
+	 ("^~/\\.emacs\\.d/" ":ED:")
+	 ("^/sudo:.*:" ":SU:")
+	 ("^~/Documents/" ":Doc:")
+	 ("^~/Dropbox/" ":DB:")
+	 ("^:\\([^:]*\\):Documento?s/" ":\\1/Doc:")
+	 ("^~/[Gg]it/" ":Git:")
+	 ("^~/[Gg]it[Hh]ub/" ":Git:")
+	 ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:")
+	 (":Doc:Cloud/" ":Cloud:")
+	 (":Doc:phonphon/" ":ΦΦ:")
+	 ("homework" "hw")
+	 ("^/ssh:asimms1@.*cs.swarthmore.edu:/" ":CS:")
+	 (":CS:home/asimms1" ":CS:~")
+	 (":Doc:algorithms/?" ":Algorithms:")
+	 ("~/Google Drive/?" ":GD:")
+	 (":GD:code.pyret.org/?" ":CPO:"))))
  '(tab-width 4)
  '(visible-bell t))
 (custom-set-faces
@@ -93,6 +119,39 @@
 (sml/apply-theme 'automatic)
 (rich-minority-mode)
 
+
+;; From the "mastering emacs" guy
+(defvar mode-line-cleaner-alist
+  `((yas/minor-mode . " υ")
+    (paredit-mode . " π")
+    (eldoc-mode . "")
+    (abbrev-mode . "")
+    ;; Major modes
+    (lisp-interaction-mode . "λ")
+    (emacs-lisp-mode . "EL")
+	(python-mode . "PY" )
+	(pyret-mode . "ARR"))
+  "Alist for `clean-mode-line'.
+
+When you add a new element to the alist, keep in mind that you
+must pass the correct minor/major mode symbol and a string you
+want to use in the modeline *in lieu of* the original.")
+
+
+(defun clean-mode-line ()
+  (interactive)
+  (loop for cleaner in mode-line-cleaner-alist
+        do (let* ((mode (car cleaner))
+                 (mode-str (cdr cleaner))
+                 (old-mode-str (cdr (assq mode minor-mode-alist))))
+             (when old-mode-str
+                 (setcar old-mode-str mode-str))
+               ;; major mode
+             (when (eq mode major-mode)
+               (setq mode-name mode-str)))))
+
+
+(add-hook 'after-change-major-mode-hook 'clean-mode-line)
 
 (setq inhibit-startup-screen t)
 
@@ -142,18 +201,12 @@ If the new path's directories does not exist, create them."
 (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 (set-cursor-color "#FD971F")
 
-;; God mode things
-(global-set-key (kbd "C-x C-1") 'delete-other-windows)
-(global-set-key (kbd "C-x C-2") 'split-window-below)
-(global-set-key (kbd "C-x C-3") 'split-window-right)
-(global-set-key (kbd "C-x C-0") 'delete-window)
-(global-set-key (kbd "C-x C-o") 'other-window)
 (defun prev-window ()
    (interactive)
    (other-window -1))
 (global-set-key (kbd "C-x C-n") 'prev-window)
 (global-set-key (kbd "C-x n") 'prev-window)
-(global-set-key (kbd "C-'") 'god-mode-all)
+
 
 
 ;; SLIME things
@@ -164,6 +217,9 @@ If the new path's directories does not exist, create them."
 (add-hook 'inferior-lisp-mode-hook (lambda () (paredit-mode t)))
 (setq inferior-lisp-program "sbcl")
 
+(add-hook 'lisp-mode-hook 'paredit-mode)
+(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
+(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
 
 (require 'windmove)
 (windmove-default-keybindings 'super)
