@@ -264,3 +264,12 @@ If the new path's directories does not exist, create them."
   (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
 
 
+(defun replace-last-sexp ()
+  (interactive)
+  (let ((value (eval (preceding-sexp))))
+	(kill-sexp -1)
+	(insert (format "%S" value))))
+
+(global-set-key (kbd "C-c e") 'replace-last-sexp )
+
+
