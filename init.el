@@ -60,7 +60,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
- '(confirm-kill-emacs (quote y-or-n-p))
  '(custom-safe-themes
    (quote
 	("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
