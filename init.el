@@ -173,9 +173,6 @@ If the new path's directories does not exist, create them."
    (interactive)
    (other-window -1))
 (global-set-key (kbd "C-x C-n") 'prev-window)
-(global-set-key (kbd "C-x n") 'prev-window)
-
-
 
 ;; SLIME things
 (require 'slime)
