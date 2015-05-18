@@ -30,8 +30,6 @@
     )
   "List of packages needs to be installed at launch")
 
-
-
 (defun has-package-not-installed ()
   (loop for p in packages-list
         when (not (package-installed-p p)) do (return t)
@@ -134,8 +132,6 @@
 (load "~/.emacs.d/settings/helm.elc")
 (load "~/.emacs.d/settings/pyret.el")
 
-
-
 ;; Nyan Mode ;;
 (setq nyan-bar-length 16)
 (nyan-mode)
@@ -152,9 +148,11 @@
   "Return a new file path of a given file path.
 If the new path's directories does not exist, create them."
   (let* ((backupRootDir "~/.emacs.d/backup/")
-		 (filePath (replace-regexp-in-string "[A-Za-z]:" "" fpath ))
-		 (backupFilePath (replace-regexp-in-string "//" "/" (concat
-															 backupRootDir filePath "~"))))
+		 (filePath
+		  (replace-regexp-in-string "[A-Za-z]:" "" fpath ))
+		 (backupFilePath
+		  (replace-regexp-in-string "//" "/" (concat
+											  backupRootDir filePath "~"))))
     (make-directory (file-name-directory
 					 backupFilePath) (file-name-directory backupFilePath))
 	
@@ -208,7 +206,6 @@ If the new path's directories does not exist, create them."
   (add-to-list 'load-path "/Users/alex/.opam/system/share/emacs/site-lisp")
   (require 'ocp-indent))
 
-
 ;; Haskell things
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 (let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
@@ -216,7 +213,6 @@ If the new path's directories does not exist, create them."
   (add-to-list 'exec-path my-cabal-path))
 
 ;; M-x haskell-mode-stylish-buffer in a repl
-
 (eval-after-load 'haskell-mode
   '(progn
 	 (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
@@ -233,7 +229,6 @@ If the new path's directories does not exist, create them."
 	 (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
 	 (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
 
-
 (defun replace-last-sexp ()
   (interactive)
   (let ((value (eval (preceding-sexp))))
@@ -241,5 +236,3 @@ If the new path's directories does not exist, create them."
 	(insert (format "%S" value))))
 
 (global-set-key (kbd "C-c e") 'replace-last-sexp )
-
-
