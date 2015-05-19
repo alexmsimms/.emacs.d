@@ -45,12 +45,11 @@
       (package-install p))))
 
 ;; Set Emacs Path from shell
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize)
-  (setq mac-option-key-is-meta nil
-		mac-command-key-is-meta t
-		mac-command-modifier 'meta
-		mac-option-modifier 'super))
+(exec-path-from-shell-initialize)
+(setq mac-option-key-is-meta nil
+	  mac-command-key-is-meta t
+	  mac-command-modifier 'meta
+	  mac-option-modifier 'super)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -106,8 +105,7 @@
  )
 
 ;; UI Enhancements ;;
-(when (member "Source Code Pro" (font-family-list))
-  (set-default-font "Source Code Pro 11"))
+(set-default-font "Source Code Pro 11")
 (load-theme 'monokai t)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
@@ -136,10 +134,8 @@
 (setq nyan-bar-length 16)
 (nyan-mode)
 
-(if (memq window-system '(mac ns))
-	(setq-default ispell-program-name "/usr/local/bin/aspell")
-  (setq-default ispell-program-name "aspell"))
 
+(setq-default ispell-program-name "/usr/local/bin/aspell")
 (setq-default ispell-list-command "list")
 
 
