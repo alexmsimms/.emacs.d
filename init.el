@@ -22,12 +22,7 @@
     paredit
     nyan-mode
     smart-mode-line
-    monokai-theme
-    slime
-    tuareg ;; \
-    utop   ;;  > OCAML
-    merlin ;; /
-    )
+    monokai-theme)
   "List of packages needs to be installed at launch")
 
 (defun has-package-not-installed ()
@@ -43,14 +38,6 @@
   (dolist (p packages-list)
     (when (not (package-installed-p p))
       (package-install p))))
-
-;; Set Emacs Path from shell
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize)
-  (setq mac-option-key-is-meta nil
-		mac-command-key-is-meta t
-		mac-command-modifier 'meta
-		mac-option-modifier 'super))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -114,14 +101,13 @@
 (setq-default indicate-empty-lines t)
 (show-paren-mode 1)
 (column-number-mode 1)
+(set-cursor-color "#FD971F")
+(setq inhibit-startup-screen t)
 
 
 (sml/setup)
 (sml/apply-theme 'automatic)
 (rich-minority-mode)
-
-(setq inhibit-startup-screen t)
-
 ;; UI Enhanced ;;
 
 ;; TRAMP Settings ;;
@@ -132,16 +118,12 @@
 (load "~/.emacs.d/settings/helm.elc")
 (load "~/.emacs.d/settings/pyret.el")
 
-;; Nyan Mode ;;
+
 (setq nyan-bar-length 16)
 (nyan-mode)
 
-(if (memq window-system '(mac ns))
-	(setq-default ispell-program-name "/usr/local/bin/aspell")
-  (setq-default ispell-program-name "aspell"))
-
+;; ispell-program gets set in os-specific branches
 (setq-default ispell-list-command "list")
-
 
 ;; make backup to a designated dir, mirroring the full path
 (defun my-backup-file-name (fpath)
@@ -166,68 +148,15 @@ If the new path's directories does not exist, create them."
 (setq-default save-place t)
 
 (add-hook 'doc-view-mode-hook 'auto-revert-mode)
-(set-cursor-color "#FD971F")
+
 
 (defun prev-window ()
   (interactive)
   (other-window -1))
 (global-set-key (kbd "C-x C-n") 'prev-window)
 
-;; SLIME things
-(require 'slime)
-(add-hook 'lisp-mode-hook (lambda () (slime-mode t)))
-(add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
-(add-hook 'lisp-mode-hook (lambda () (paredit-mode t)))
-(add-hook 'inferior-lisp-mode-hook (lambda () (paredit-mode t)))
-(setq inferior-lisp-program "sbcl")
-
-(add-hook 'lisp-mode-hook 'paredit-mode)
-(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
-(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
-
 (require 'windmove)
 (windmove-default-keybindings 'super)
-
-
-;; Further Ocaml things
-(when (memq window-system '(mac ns))
-  (add-hook 'tuareg-mode-hook 'tuareg-imenu-set-imenu)
-  (setq auto-mode-alist
-		(append '(("\\.ml[ily]?$" . tuareg-mode)
-				  ("\\.topml$" . tuareg-mode))
-				auto-mode-alist)) 
-  (autoload 'utop-setup-ocaml-buffer "utop" "Toplevel for OCaml" t)
-  (add-hook 'tuareg-mode-hook 'utop-setup-ocaml-buffer)
-  (add-hook 'tuareg-mode-hook 'merlin-mode)
-  (setq merlin-use-auto-complete-mode t)
-  (setq merlin-error-after-save nil)
-
-  (setq opam-share (substring (shell-command-to-string "opam config var share") 0 -1))
-  (add-to-list 'load-path "/Users/alex/.opam/system/share/emacs/site-lisp")
-  (require 'ocp-indent))
-
-;; Haskell things
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-(let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
-  (setenv "PATH" (concat my-cabal-path ":" (getenv "PATH")))
-  (add-to-list 'exec-path my-cabal-path))
-
-;; M-x haskell-mode-stylish-buffer in a repl
-(eval-after-load 'haskell-mode
-  '(progn
-	 (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
-	 (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
-	 (define-key haskell-mode-map (kbd "C-c C-n C-t") 'haskell-process-do-type)
-	 (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
-	 (define-key haskell-mode-map (kbd "C-c C-n C-c") 'haskell-process-cabal-build)
-	 (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)
-	 (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)))
-(eval-after-load 'haskell-cabal
-  '(progn
-	 (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
-	 (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
-	 (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
-	 (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
 
 (defun replace-last-sexp ()
   (interactive)
