@@ -23,7 +23,6 @@
     nyan-mode
     smart-mode-line
     monokai-theme
-    slime
     )
   "List of packages needs to be installed at launch")
 
@@ -103,14 +102,13 @@
 (setq-default indicate-empty-lines t)
 (show-paren-mode 1)
 (column-number-mode 1)
+(set-cursor-color "#FD971F")
+(setq inhibit-startup-screen t)
 
 
 (sml/setup)
 (sml/apply-theme 'automatic)
 (rich-minority-mode)
-
-(setq inhibit-startup-screen t)
-
 ;; UI Enhanced ;;
 
 ;; TRAMP Settings ;;
@@ -121,14 +119,13 @@
 (load "~/.emacs.d/settings/helm.elc")
 (load "~/.emacs.d/settings/pyret.el")
 
-;; Nyan Mode ;;
+
 (setq nyan-bar-length 16)
 (nyan-mode)
 
 
-(setq-default ispell-program-name "/usr/local/bin/aspell")
+(setq-default ispell-program-name "aspell")
 (setq-default ispell-list-command "list")
-
 
 ;; make backup to a designated dir, mirroring the full path
 (defun my-backup-file-name (fpath)
@@ -153,24 +150,12 @@ If the new path's directories does not exist, create them."
 (setq-default save-place t)
 
 (add-hook 'doc-view-mode-hook 'auto-revert-mode)
-(set-cursor-color "#FD971F")
+
 
 (defun prev-window ()
   (interactive)
   (other-window -1))
 (global-set-key (kbd "C-x C-n") 'prev-window)
-
-;; SLIME things
-(require 'slime)
-(add-hook 'lisp-mode-hook (lambda () (slime-mode t)))
-(add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
-(add-hook 'lisp-mode-hook (lambda () (paredit-mode t)))
-(add-hook 'inferior-lisp-mode-hook (lambda () (paredit-mode t)))
-(setq inferior-lisp-program "sbcl")
-
-(add-hook 'lisp-mode-hook 'paredit-mode)
-(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
-(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
 
 (require 'windmove)
 (windmove-default-keybindings 'super)
