@@ -117,8 +117,6 @@
 ;; TRAMP Set ;;
 
 (load "~/.emacs.d/settings/helm.elc")
-(load "~/.emacs.d/settings/pyret.el")
-
 
 (setq nyan-bar-length 16)
 (nyan-mode)
