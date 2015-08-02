@@ -3,11 +3,7 @@
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives
-             '("tromey" . "http://tromey.com/elpa/") t)
-(add-to-list 'package-archives
-			 '("melpa-stable" . "http://stable.melpa.org/packages/") t)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
+	     '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 (package-initialize)
 (when (not package-archive-contents)
   (package-refresh-contents))
@@ -20,7 +16,6 @@
     magit
     auctex
     paredit
-    nyan-mode
     smart-mode-line
     monokai-theme
     )
@@ -93,76 +88,14 @@
  ;; If there is more than one, they won't work right.
  )
 
-;; UI Enhancements ;;
+(defun load-settings (name)
+  (load (format "~/.emacs.d/settings/%s.el" name)))
 
-(set-default-font "Source Code Pro 11")
-(load-theme 'monokai t)
-(tool-bar-mode 0)
-(scroll-bar-mode 0)
-(setq-default indicate-empty-lines t)
-(show-paren-mode 1)
-(column-number-mode 1)
-(set-cursor-color "#FD971F")
-(setq inhibit-startup-screen t)
+(load-settings "elisp")
+(load-settings "helm")
+(load-settings "persistence")
+(load-settings "ui")
+(load-settings "misc")
 
 
-(sml/setup)
-(sml/apply-theme 'automatic)
-(rich-minority-mode)
-;; UI Enhanced ;;
 
-;; TRAMP Settings ;;
-(setq tramp-default-method "ssh")
-(setq tramp-default-user "asimms1")
-;; TRAMP Set ;;
-
-(load "~/.emacs.d/settings/helm.elc")
-
-(setq nyan-bar-length 16)
-(nyan-mode)
-
-
-(setq-default ispell-program-name "aspell")
-(setq-default ispell-list-command "list")
-
-;; make backup to a designated dir, mirroring the full path
-(defun my-backup-file-name (fpath)
-  "Return a new file path of a given file path.
-If the new path's directories does not exist, create them."
-  (let* ((backupRootDir "~/.emacs.d/backup/")
-		 (filePath
-		  (replace-regexp-in-string "[A-Za-z]:" "" fpath ))
-		 (backupFilePath
-		  (replace-regexp-in-string "//" "/" (concat
-											  backupRootDir filePath "~"))))
-    (make-directory (file-name-directory
-					 backupFilePath) (file-name-directory backupFilePath))
-	
-    backupFilePath))
-
-(setq make-backup-file-name-function 'my-backup-file-name)
-
-
-(setq save-place-file "~/.emacs.d/saved-places")
-(require 'saveplace)
-(setq-default save-place t)
-
-(add-hook 'doc-view-mode-hook 'auto-revert-mode)
-
-
-(defun prev-window ()
-  (interactive)
-  (other-window -1))
-(global-set-key (kbd "C-x C-n") 'prev-window)
-
-(require 'windmove)
-(windmove-default-keybindings 'super)
-
-
-(defun replace-last-sexp ()
-  (interactive)
-  (let ((value (eval (preceding-sexp))))
-	(kill-sexp -1)
-	(insert (format "%S" value))))
-
-(global-set-key (kbd "C-c e") 'replace-last-sexp )
