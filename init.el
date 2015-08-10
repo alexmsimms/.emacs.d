@@ -16,7 +16,6 @@
     magit
     auctex
     paredit
-
     clojure-mode
     clojure-mode-extra-font-locking
     cider
