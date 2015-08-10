@@ -6,3 +6,5 @@
 
 (setq-default ispell-program-name "aspell")
 (setq-default ispell-list-command "list")
+
+(global-set-key (kbd "C-c e") 'replace-last-sexp )
